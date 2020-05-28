@@ -1,0 +1,204 @@
+<div class="container">
+    <div class="row m-1">
+        <a target="_blank" href="https://teknoseyir.com" class="badge badge-danger m-1">Teknoseyir</a>
+        <a target="_blank" href="https://tsopenteam.github.io" class="badge badge-info m-1">Ts Open Team</a>
+        <a target="_blank" href="https://github.com/tsopenteam" class="badge badge-secondary m-1">Github</a>
+    </div>
+    <nav class="navbar navbar-light mt-3 mb-3 bg-secondary text-white rounded">
+        <a class="navbar-brand text-white" style="font-size: 14px; line-height: 28px;" href="./">
+            <img src="https://raw.githubusercontent.com/tsopenteam/content/master/images/logo/tsopenteam-logo.png"
+                width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            Teknoseyir Bilim Gündemi İstatistikleri</a>
+
+        <div *ngIf="display.isLoading" class="clearfix">
+            <div class="spinner-border float-right" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </nav>
+    <div class="row mb-3">
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Genel Bilgiler</b>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Podcast Sayısı
+                            <span class="badge badge-primary">{{display.totalPodcast}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Konuşulan Konu Sayısı
+                            <span class="badge badge-primary">{{display.totalContent}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Verilen Link Sayısı
+                            <span class="badge badge-primary">{{display.totalContentLink}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Videosu Olan Podcast Sayısı
+                            <span class="badge badge-primary">{{display.totalPodcastWithVideo}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Videosu Olmayan Podcast Sayısı
+                            <span class="badge badge-primary">{{display.totalPodcastNotWithVideo}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Açıklama Girişi Olan Podcast Sayısı
+                            <span class="badge badge-primary">{{display.totalPodcastExplanation}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Genel Bilgiler</b>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Toplam Podcast Süresi
+                            <span class="badge badge-dark p-2">{{display.totalPodcastTime}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            En Uzun Süren Podcast
+                            <a class="badge badge-dark p-2" [href]="display.maxTimePodcastLink" target="_blank"
+                                rel="noopener noreferrer">{{display.maxTimePodcast}}</a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            En Kısa Süren Podcast
+                            <a class="badge badge-dark p-2" [href]="display.minTimePodcastLink" target="_blank"
+                                rel="noopener noreferrer">{{display.minTimePodcast}}</a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Ortalama Podcast Süresi
+                            <span class="badge badge-dark p-2">{{display.avgTimePodcast}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Yıllara Göre Podcast Sayısı</b>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="chartYearPodcast.dataset" [labels]="chartYearPodcast.label"
+                            [options]="chartYearPodcast.option" [colors]="chartYearPodcast.color"
+                            [legend]="chartYearPodcast.legend" [chartType]="chartYearPodcast.type">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Yıllara Göre Podcast Süreleri</b>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="chartYearPodcastTime.dataset"
+                            [labels]="chartYearPodcastTime.label" [options]="chartYearPodcastTime.option"
+                            [colors]="chartYearPodcastTime.color" [legend]="chartYearPodcastTime.legend"
+                            [chartType]="chartYearPodcastTime.type">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Podcast Süre Grafiği</b>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="chartPodcastTime.dataset" [labels]="chartPodcastTime.label"
+                            [options]="chartPodcastTime.option" [colors]="chartPodcastTime.color"
+                            [legend]="chartPodcastTime.legend" [chartType]="chartPodcastTime.type">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Yıllara Göre Konu Sayısı</b>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="chartYearContent.dataset" [labels]="chartYearContent.label"
+                            [options]="chartYearContent.option" [colors]="chartYearContent.color"
+                            [legend]="chartYearContent.legend" [chartType]="chartYearContent.type">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Yıllara Göre Link Sayısı</b>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="chartYearLink.dataset" [labels]="chartYearLink.label"
+                            [options]="chartYearLink.option" [colors]="chartYearLink.color"
+                            [legend]="chartYearLink.legend" [chartType]="chartYearLink.type">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Yıllara Göre Video Sayısı</b>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="chartYearVideo.dataset" [labels]="chartYearVideo.label"
+                            [options]="chartYearVideo.option" [colors]="chartYearVideo.color"
+                            [legend]="chartYearVideo.legend" [chartType]="chartYearVideo.type">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm mb-1">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header">
+                        <b>Yıllara Göre Açıklama Sayısı</b>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas baseChart [datasets]="chartYearExplanation.dataset"
+                            [labels]="chartYearExplanation.label" [options]="chartYearExplanation.option"
+                            [colors]="chartYearExplanation.color" [legend]="chartYearExplanation.legend"
+                            [chartType]="chartYearExplanation.type">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="text-center mb-5">
+        <span>tsopenteam | 2020</span>
+    </div>
+</div>
