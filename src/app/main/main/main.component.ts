@@ -9,6 +9,8 @@ import { PodcastModel } from '../model/podcast.model';
 })
 export class MainComponent implements OnInit {
 
+  public footerYear = "";
+
   public commonChartFeatures = {
     option: {
       responsive: true,
@@ -113,6 +115,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateAllData();
+
+    this.footerYear = new Date().getFullYear().toString();
   }
 
   public updateAllData(): void {

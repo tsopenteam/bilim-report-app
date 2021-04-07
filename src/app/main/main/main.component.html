@@ -65,13 +65,19 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             En Uzun Süren Podcast
-                            <a class="badge badge-dark p-2" [href]="display.maxTimePodcastLink" target="_blank"
-                                rel="noopener noreferrer">{{display.maxTimePodcast}}</a>
+                            <div>
+                                <span class="badge badge-dark p-2">{{display.maxTimePodcast}}</span>
+                                <a class="badge badge-info p-2 ml-1" [href]="display.maxTimePodcastLink" target="_blank"
+                                    rel="noopener noreferrer">dinle</a>
+                            </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             En Kısa Süren Podcast
-                            <a class="badge badge-dark p-2" [href]="display.minTimePodcastLink" target="_blank"
-                                rel="noopener noreferrer">{{display.minTimePodcast}}</a>
+                            <div>
+                                <span class="badge badge-dark p-2">{{display.minTimePodcast}}</span>
+                                <a class="badge badge-info p-2 ml-1" [href]="display.minTimePodcastLink" target="_blank"
+                                    rel="noopener noreferrer">dinle</a>
+                            </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Ortalama Podcast Süresi
@@ -199,6 +205,6 @@
     </div>
     <hr>
     <div class="text-center mb-5">
-        <span>tsopenteam | 2020</span>
+        <span>tsopenteam | {{footerYear}}</span>
     </div>
 </div>
